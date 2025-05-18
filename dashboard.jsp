@@ -1,30 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Admin Dashboard</title>
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/dashboard.css" />
+	<meta charset="UTF-8">
+	<title>Admin Dashboard</title>
+	<link rel="stylesheet" type="text/css" href="${contextPath}/css/dashboard.css" />
 </head>
 <body>
 
 	<div class="container">
 		<div class="sidebar">
 			<ul class="nav">
-				<li><a href="${contextPath}/dashboard"><span class="icon">🏠</span>
-						Dashboard</a></li>
-				<li><a href="${contextPath}/adminOrder"><span class="icon">📊</span>
-						Order List</a></li>
-				<li><a href="${contextPath}/modifyStudents"><span
-						class="icon">💳</span> Students</a></li>
-				<li><a href="${contextPath}/studentUpdate"><span
-						class="icon">✏️</span> Update Student</a></li>
+				<li><a href="${contextPath}/dashboard"><span class="icon">🏠</span> Dashboard</a></li>
+				<li><a href="${contextPath}/adminOrder"><span class="icon">📦</span> Order List</a></li>
+				<li><a href="${contextPath}/modifySupplies"><span class="icon">📋</span> Supplies</a></li>
+				<li><a href="${contextPath}/supplyUpdate"><span class="icon">✏️</span> Update Supply</a></li>
 			</ul>
 			<div class="logout">
 				<form action="${contextPath}/logout" method="post">
@@ -36,57 +30,55 @@
 		<div class="content">
 			<div class="header">
 				<div class="info-box">
-					<h3>Total Students</h3>
+					<h3>Total Supplies</h3>
 					<p>${empty total ? 0 : total}</p>
 				</div>
 				<div class="info-box">
-					<h3>Computing</h3>
-					<p>${empty computing ? 0 : computing}</p>
+					<h3>Electronics</h3>
+					<p>${empty electronics ? 0 : electronics}</p>
 				</div>
 				<div class="info-box">
-					<h3>Multimedia</h3>
-					<p>${empty multimedia ? 0 : multimedia}</p>
+					<h3>Furniture</h3>
+					<p>${empty furniture ? 0 : furniture}</p>
 				</div>
 				<div class="info-box">
-					<h3>Networking</h3>
-					<p>${empty networking ? 0 : networking}</p>
+					<h3>Stationery</h3>
+					<p>${empty stationery ? 0 : stationery}</p>
 				</div>
 			</div>
-
 
 			<div class="card">
 				<div>
 					<h2>Welcome, Admins!</h2>
-					<p>School Management Dashboard</p>
-					<br /> <br />
-					<p>We're excited to have you onboard. Manage your school's data
-						efficiently and effortlessly with our user-friendly interface.
-						From student records to financial data, everything you need is
-						just a few clicks away.</p>
+					<p>Supply Management Dashboard</p>
+					<br /><br />
+					<p>
+						Welcome to the Supply Management System. Efficiently track and manage
+						your inventory, orders, and vendors with ease using our admin tools.
+						Stay on top of stock levels and ensure smooth operations.
+					</p>
 				</div>
-				<img src="${contextPath}/resources/images/system/college.jpg"
-					alt="college">
+				<img src="${contextPath}/resources/images/system/warehouse.jpg" alt="warehouse">
 			</div>
 
 			<div class="table-container">
-				<h3>Recently Enrolled Student</h3>
+				<h3>Recently Added Supplies</h3>
 				<table>
 					<thead>
 						<tr>
 							<th>ID</th>
 							<th>Name</th>
-							<th>Email</th>
-							<th>Number</th>
+							<th>Category</th>
+							<th>Quantity</th>
 						</tr>
 					</thead>
 					<tbody>
-						<!-- Using JSTL forEach loop to display student data -->
-						<c:forEach var="student" items="${studentList}">
+						<c:forEach var="supply" items="${supplyList}">
 							<tr>
-								<td>${student.id}</td>
-								<td>${student.firstName}${student.lastName}</td>
-								<td>${student.email}</td>
-								<td>${student.number}</td>
+								<td>${supply.id}</td>
+								<td>${supply.name}</td>
+								<td>${supply.category}</td>
+								<td>${supply.quantity}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
